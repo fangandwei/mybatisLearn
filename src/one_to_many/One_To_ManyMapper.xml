@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper   namespace="onetomany">
+  <resultMap type="com.bean.Classes" id="inf">
+        <id  property="id" column="cid"/>
+           <result property="name"  column="cname" />
+          <association property="teacher"  javaType="com.bean.Teacher">
+             <id  property="id" column="t_id"   />
+             <result property="name" column="t_name"  />
+          </association>
+          <collection property="stu" ofType="com.bean.Student">
+              <id  property="id"  column="s_id" />
+              <result  property="name"  column="s_name" />
+          </collection>
+  </resultMap>           
+  <select id="getinf" resultMap="inf" parameterType="int">
+  SELECT *
+  FROM student s,teacher t,classes c 
+  WHERE  c.cid=s.class_id AND t.t_id=c.teacher_id  AND   c.cid=#{id}
+  </select>
+</mapper>

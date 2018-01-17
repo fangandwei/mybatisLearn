@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!-- 增删改查的配置文件 -->
+<mapper  namespace="crud.UserMapper" >
+    <insert id="insertUser"  parameterType="mybatis_test1.User">
+       insert into muser(name ,age) values(#{name},#{age})
+    </insert>
+    <delete id="deleteUser"  parameterType="mybatis_test1.User">
+       delete from muser where name=#{name};
+    </delete>
+    <update id="updateUser"   parameterType="mybatis_test1.User" >
+    
+    
+      update muser set name=#{name} ,age=#{age} where id=#{id}
+    </update>
+     
+    <select id="selectOneUser"   parameterType="int"  resultType="mybatis_test1.User">
+       select * from muser  where id= #{id}
+    </select>
+    <select id="selectall" resultType="mybatis_test1.User">
+         select * from muser
+    </select>
+
+</mapper>

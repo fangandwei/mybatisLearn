@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="OneToOneMapper">
+     <resultMap type="com.bean.Classes" id="selectdomain">
+           <id  property="id" column="cid"/>
+           <result property="name"  column="cname" />
+          <association property="teacher"  javaType="com.bean.Teacher">
+             <id  property="id" column="t_id"   />
+             <result property="name" column="t_name"  />
+          </association>
+     </resultMap>
+    <select  id="selectone"  parameterType="int" resultMap="selectdomain">
+        SELECT * FROM  teacher t,classes c WHERE t.t_id=c.cid AND c.cid=#{id}
+    </select>
+</mapper>
